@@ -8,7 +8,7 @@ const TranslatorUI = () => {
 
   const handleMicPress = () => {
     // Placeholder logic for mic press
-    console.log('Mic pressed!');
+    console.log('Mic');
   };
 
   return (
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   micButton: {
     position: 'absolute',
     bottom: 100, // Adjusted to prevent overlap with tab bar
-    right: 160, // Positioned towards the right side
+    right: 175, // Positioned towards the right side
     width: 60,
     height: 60,
     backgroundColor: '#007BFF',

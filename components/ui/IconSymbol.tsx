@@ -13,6 +13,8 @@ const MAPPING = {
   'paperplane.fill': 'send',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'translate': 'translate',
+  'school': 'school',
 } as Partial<
   Record<
     import('expo-symbols').SymbolViewProps['name'],
@@ -40,4 +42,3 @@ export function IconSymbol({
   weight?: SymbolWeight;
 }) {
   return <MaterialIcons color={color} size={size} name={MAPPING[name]} style={style} />;
-}
