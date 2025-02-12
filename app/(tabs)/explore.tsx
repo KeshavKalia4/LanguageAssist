@@ -10,7 +10,7 @@ function Explore() {
         <Text style={styles.text}>Welcome to Tutor</Text>
 
         <TouchableOpacity style={styles.button} onPress={() => console.log("hello")}>
-          <Text style={styles.buttonText}>Press Here</Text>
+          <Text style={styles.buttonText}>AI assistance</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => console.log("hello")}>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#333',
-    marginBottom: 20,
+    marginBottom: 70,
   },
   button: {
     alignItems: 'center',
@@ -58,6 +58,8 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 5,
     marginVertical: 10, // Space between buttons
+    marginBottom: 70,
+    
   },
   buttonText: {
     color: 'white',
