@@ -10,7 +10,7 @@ function Explore() {
         <Text style={styles.text}>Welcome to Tutor</Text>
 
         <TouchableOpacity style={styles.button} onPress={() => console.log("hello")}>
-          <Text style={styles.buttonText}>AI assistance</Text>
+          <Text style={styles.buttonText}>AI Assistance</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.button} onPress={() => console.log("hello")}>
