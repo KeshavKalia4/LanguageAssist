@@ -7,24 +7,32 @@ function Explore() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topHalf}>
-        <Text style={styles.text}>Welcome to Tutor</Text>
+        <Text style={styles.title}>Welcome to Tutor</Text>
+        <Text style={styles.subtitle}>Your AI Language Learning Assistant</Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => console.log("hello")}>
+        <TouchableOpacity
+          style={[styles.button, styles.primaryButton]}
+          onPress={() => console.log("hello")}
+        >
           <Text style={styles.buttonText}>AI Assistance</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={() => console.log("hello")}>
+        <TouchableOpacity
+          style={[styles.button, styles.secondaryButton]}
+          onPress={() => console.log("hello")}
+        >
           <Text style={styles.buttonText}>Generate Flashcards</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.bottomHalf}>
-        {/* AI Output Box */}
         <View style={styles.outputBox}>
           {flashcards ? (
             <Text style={styles.flashcardsText}>{flashcards}</Text>
           ) : (
-            <Text style={styles.flashcardsText}>AI output will appear here.</Text>
+            <Text style={styles.placeholderText}>
+              Start a conversation or generate flashcards to see AI responses here
+            </Text>
           )}
         </View>
       </View>
@@ -37,57 +45,85 @@ export default Explore;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#121212',
   },
   topHalf: {
-    flex: 1,  // This will take up the first half of the screen
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 24,
+    paddingTop: 20,
   },
-  text: {
-    fontSize: 24,
+  title: {
+    fontSize: 32,
     fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 70,
+    color: '#fff',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#9CA3AF',
+    marginBottom: 40,
+    textAlign: 'center',
   },
   button: {
     alignItems: 'center',
-    backgroundColor: 'blue',
     width: '100%',
-    padding: 15,
-    borderRadius: 5,
-    marginVertical: 10, // Space between buttons
-    marginBottom: 70,
-    
+    padding: 16,
+    borderRadius: 12,
+    marginVertical: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  primaryButton: {
+    backgroundColor: '#6366F1',
+  },
+  secondaryButton: {
+    backgroundColor: '#4F46E5',
   },
   buttonText: {
     color: 'white',
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: '600',
   },
   bottomHalf: {
-    flex: 1,  // This will take up the second half of the screen
-    justifyContent: 'flex-start', // Ensures that the output box stays at the top of the bottom half
+    flex: 1,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    paddingBottom: 20,  // Padding to avoid overlap with home bar
+    paddingHorizontal: 24,
+    paddingBottom: 24,
   },
   outputBox: {
-    backgroundColor: '#fff',
-    width: '90%',
-    height: '70%', // Box takes up most of the bottom half
-    borderRadius: 10,
+    backgroundColor: '#1E1E1E',
+    width: '100%',
+    height: '85%',
+    borderRadius: 16,
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
     elevation: 5,
+    borderWidth: 1,
+    borderColor: '#333333',
   },
   flashcardsText: {
-    fontSize: 16,
-    color: '#333',
+    fontSize: 18,
+    color: '#fff',
     textAlign: 'center',
+    lineHeight: 24,
+  },
+  placeholderText: {
+    fontSize: 16,
+    color: '#6B7280',
+    textAlign: 'center',
+    fontStyle: 'italic',
+    paddingHorizontal: 20,
   },
 });
