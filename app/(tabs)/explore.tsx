@@ -12,14 +12,14 @@ function Explore() {
 
         <TouchableOpacity
           style={[styles.button, styles.primaryButton]}
-          onPress={() => console.log("hello")}
+          onPress={() => console.log("AI")}
         >
           <Text style={styles.buttonText}>AI Assistance</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.secondaryButton]}
-          onPress={() => console.log("hello")}
+          onPress={() => console.log("Flashcards")}
         >
           <Text style={styles.buttonText}>Generate Flashcards</Text>
         </TouchableOpacity>
@@ -31,7 +31,7 @@ function Explore() {
             <Text style={styles.flashcardsText}>{flashcards}</Text>
           ) : (
             <Text style={styles.placeholderText}>
-              Start a conversation or generate flashcards to see AI responses here
+              Start a conversation with AI to see responses here
             </Text>
           )}
         </View>
