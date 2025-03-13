@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const TranslatorUI = () => {
@@ -9,6 +9,11 @@ const TranslatorUI = () => {
   const handleMicPress = () => {
     // Placeholder logic for mic press
     console.log('Mic');
+  };
+
+  const handleConversationHistory = () => {
+    // Placeholder logic for conversation history
+    console.log('Conversation History');
   };
 
   return (
@@ -41,6 +46,13 @@ const TranslatorUI = () => {
               </Text>
             </View>
           </View>
+
+          <TouchableOpacity
+            style={styles.conversationButton}
+            onPress={() => console.log("conversations")}
+          >
+            <Text style={styles.conversationButtonText}>Conversation History</Text>
+          </TouchableOpacity>
 
           <View style={styles.bottomSection}>
             <TouchableOpacity style={styles.micButton} onPress={handleMicPress}>
@@ -88,7 +100,7 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     flex: 1,
-    marginBottom: 60,
+    marginBottom: -20,
   },
   inputBox: {
     backgroundColor: '#1E1E1E',
@@ -129,6 +141,24 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'left',
     lineHeight: 24,
+  },
+  conversationButton: {
+    alignItems: 'center',
+    width: '100%',
+    padding: 16,
+    borderRadius: 12,
+    marginVertical: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 3,
+    backgroundColor: '#6366F1',
+  },
+  conversationButtonText: {
+    fontSize: 18,
+    color: '#fff',
+    textAlign: 'center',
   },
   placeholderText: {
     fontSize: 16,
