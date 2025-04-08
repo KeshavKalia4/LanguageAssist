@@ -1,3 +1,4 @@
+//Translate
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,11 +7,13 @@ const TranslatorUI = () => {
   const [inputText, setInputText] = useState<string>('');
   const [translatedText, setTranslatedText] = useState<string>('');
 
+  //Logic for mic button
   const handleMicPress = () => {
     // Placeholder logic for mic press
     console.log('Mic');
   };
 
+  //Logic for conversation history
   const handleConversationHistory = () => {
     // Placeholder logic for conversation history
     console.log('Conversation History');
@@ -49,7 +52,7 @@ const TranslatorUI = () => {
 
           <TouchableOpacity
             style={styles.conversationButton}
-            onPress={() => console.log("conversations")}
+            onPress={handleConversationHistory}
           >
             <Text style={styles.conversationButtonText}>Conversation History</Text>
           </TouchableOpacity>

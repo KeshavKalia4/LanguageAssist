@@ -2,40 +2,73 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 
 function Explore() {
-  const [flashcards, setFlashcards] = useState<string | null>(null);
+  const [primaryLang, setPrimaryLang] = useState("Not Selected");
+  const [targetLang, setTargetLang] = useState("Not Selected");
+
+  const handlePrimarySelect = () => {
+    // For now, we’ll set it to a predefined value for simplicity
+    setPrimaryLang("English");
+  };
+
+  const handleTargetSelect = () => {
+    // For now, we’ll set it to a predefined value for simplicity
+    setTargetLang("Spanish");
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topHalf}>
         <Text style={styles.title}>Welcome to Tutor</Text>
         <Text style={styles.subtitle}>Your AI Language Learning Assistant</Text>
+      </View>
 
+      <View style={styles.languageSelection}>
+        {/* Primary Language Selection */}
         <TouchableOpacity
           style={[styles.button, styles.primaryButton]}
-          onPress={() => console.log("AI")}
+          onPress={handlePrimarySelect}
+        >
+          <Text style={styles.buttonText}>Select Primary Language</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.selectedLangText}>
+          Primary Language: {primaryLang || "Not selected"}
+        </Text>
+
+        {/* Target Language Selection */}
+        <TouchableOpacity
+          style={[styles.button, styles.secondaryButton]}
+          onPress={handleTargetSelect}
+        >
+          <Text style={styles.buttonText}>Select Target Language</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.selectedLangText}>
+          Target Language: {targetLang || "Not selected"}
+        </Text>
+      </View>
+
+
+
+
+      {/* AI/Flashcard buttons */}
+      <View style={styles.actionButtons}>
+        <TouchableOpacity
+          style={[styles.button, styles.primaryButton]}
+          onPress={() => console.log("AI Assistance")}
         >
           <Text style={styles.buttonText}>AI Assistance</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.secondaryButton]}
-          onPress={() => console.log("Flashcards")}
+          onPress={() => console.log("Generate Flashcards")}
         >
           <Text style={styles.buttonText}>Generate Flashcards</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.bottomHalf}>
-        <View style={styles.outputBox}>
-          {flashcards ? (
-            <Text style={styles.flashcardsText}>{flashcards}</Text>
-          ) : (
-            <Text style={styles.placeholderText}>
-              Start a conversation with AI to see responses here
-            </Text>
-          )}
-        </View>
-      </View>
+
     </SafeAreaView>
   );
 }
@@ -46,13 +79,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121212',
+    justifyContent: 'flex-start', // Align from the top
+    paddingTop: 20, // Space from the top
   },
   topHalf: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 20,
+    marginBottom: 40, // Space between the title/subtitle and the language selection section
   },
   title: {
     fontSize: 32,
@@ -60,19 +92,30 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginBottom: 8,
     textAlign: 'center',
+    paddingTop: 20,
   },
   subtitle: {
     fontSize: 16,
     color: '#9CA3AF',
-    marginBottom: 40,
+    marginBottom: 20, // Space between subtitle and language selection
+    paddingBottom: 30,
     textAlign: 'center',
+  },
+  languageSelection: {
+    alignItems: 'center',
+    marginBottom: 40, // Space between language selection and action buttons
+  },
+  selectedLangText: {
+    fontSize: 16,
+    color: '#9CA3AF',
+    marginVertical: 8,
   },
   button: {
     alignItems: 'center',
-    width: '100%',
+    width: '85%',
     padding: 16,
     borderRadius: 12,
-    marginVertical: 8,
+    marginVertical: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
@@ -90,40 +133,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-  bottomHalf: {
-    flex: 1,
-    justifyContent: 'flex-start',
+  actionButtons: {
     alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingBottom: 24,
-  },
-  outputBox: {
-    backgroundColor: '#1E1E1E',
-    width: '100%',
-    height: '85%',
-    borderRadius: 16,
-    padding: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 12,
-    elevation: 5,
-    borderWidth: 1,
-    borderColor: '#333333',
-  },
-  flashcardsText: {
-    fontSize: 18,
-    color: '#fff',
-    textAlign: 'center',
-    lineHeight: 24,
-  },
-  placeholderText: {
-    fontSize: 16,
-    color: '#6B7280',
-    textAlign: 'center',
-    fontStyle: 'italic',
-    paddingHorizontal: 20,
+    marginBottom: 24, // Space below the action buttons
+    paddingTop: 50,
   },
 });
