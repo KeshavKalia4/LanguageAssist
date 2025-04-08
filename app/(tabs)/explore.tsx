@@ -1,18 +1,27 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { router } from 'expo-router';
 
 function Explore() {
   const [primaryLang, setPrimaryLang] = useState("Not Selected");
   const [targetLang, setTargetLang] = useState("Not Selected");
 
   const handlePrimarySelect = () => {
-    // For now, we’ll set it to a predefined value for simplicity
+    // For now, we'll set it to a predefined value for simplicity
     setPrimaryLang("English");
   };
 
   const handleTargetSelect = () => {
-    // For now, we’ll set it to a predefined value for simplicity
+    // For now, we'll set it to a predefined value for simplicity
     setTargetLang("Spanish");
+  };
+
+  const handleAIAssistance = () => {
+    router.push('/Assistant');
+  };
+
+  const handleFlashcards = () => {
+    router.push('/Flashcards');
   };
 
   return (
@@ -48,27 +57,22 @@ function Explore() {
         </Text>
       </View>
 
-
-
-
       {/* AI/Flashcard buttons */}
       <View style={styles.actionButtons}>
         <TouchableOpacity
           style={[styles.button, styles.primaryButton]}
-          onPress={() => console.log("AI Assistance")}
+          onPress={handleAIAssistance}
         >
           <Text style={styles.buttonText}>AI Assistance</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[styles.button, styles.secondaryButton]}
-          onPress={() => console.log("Generate Flashcards")}
+          onPress={handleFlashcards}
         >
           <Text style={styles.buttonText}>Generate Flashcards</Text>
         </TouchableOpacity>
       </View>
-
-
     </SafeAreaView>
   );
 }
