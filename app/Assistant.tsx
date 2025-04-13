@@ -11,6 +11,7 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import axios from 'axios'; // Import Axios
 
 interface Message {
   id: string;
@@ -22,7 +23,21 @@ function Assistant() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputText, setInputText] = useState('');
 
-  const handleSend = useCallback(() => {
+  // Function to fetch AI response from backend
+  const fetchAIResponse = async (userQuestion: string) => {
+    try {
+      // Make POST request to your backend API
+      const response = await axios.post('http://192.168.1.8:5001/api/get_answer', {
+        question: userQuestion,
+      });
+      return response.data.answer; // Assuming your backend sends back the AI answer
+    } catch (error) {
+      console.error('Error fetching AI response:', error);
+      return 'Sorry, there was an error processing your request.';
+    }
+  };
+
+  const handleSend = useCallback(async () => {
     if (inputText.trim().length === 0) {
       return;
     }
@@ -33,19 +48,34 @@ function Assistant() {
       sender: 'user',
     };
 
+    // Placeholder for AI message
     const aiPlaceholder: Message = {
       id: (Date.now() + 1).toString(),
-      text: 'AI response placeholder...',
+      text: 'AI is thinking...',
       sender: 'ai',
     };
 
-    // Add user message and a placeholder AI response to the beginning for inverted list
+    // Add user message and placeholder AI response to the beginning for inverted list
     setMessages((prevMessages) => [
       aiPlaceholder,
       userMessage,
       ...prevMessages,
     ]);
     setInputText('');
+
+    // Fetch AI response after sending the user message
+    const aiResponse = await fetchAIResponse(inputText.trim());
+
+    // Update AI message after getting response from backend
+    setMessages((prevMessages) => {
+      const updatedMessages = [...prevMessages];
+      updatedMessages[0] = {
+        id: (Date.now() + 2).toString(),
+        text: aiResponse,
+        sender: 'ai',
+      };
+      return updatedMessages;
+    });
   }, [inputText]);
 
   const renderMessage = ({ item }: { item: Message }) => (
@@ -157,4 +187,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-}); 
+});
