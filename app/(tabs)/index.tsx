@@ -1,71 +1,87 @@
 //Translate
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView, Button } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const TranslatorUI = () => {
   const [inputText, setInputText] = useState<string>('');
   const [translatedText, setTranslatedText] = useState<string>('');
 
-  //Logic for mic button
   const handleMicPress = () => {
-    // Placeholder logic for mic press
     console.log('Mic');
   };
 
-  //Logic for conversation history
   const handleConversationHistory = () => {
-    // Placeholder logic for conversation history
     console.log('Conversation History');
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.keyboardView}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      >
-        <View style={styles.content}>
-          <View style={styles.header}>
-            <Text style={styles.title}>Welcome to the Translator</Text>
-            <Text style={styles.subtitle}>Translate text between languages instantly</Text>
-          </View>
-
-          <View style={styles.boxContainer}>
-            <View style={styles.inputBox}>
-              <TextInput
-                style={styles.input}
-                placeholder="Type your text here..."
-                placeholderTextColor="#718096"
-                value={inputText}
-                onChangeText={setInputText}
-                multiline
-              />
-            </View>
-
-            <View style={styles.outputBox}>
-              <Text style={translatedText ? styles.outputText : styles.placeholderText}>
-                {translatedText || 'Translation will appear here...'}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <KeyboardAvoidingView
+          style={styles.keyboardView}
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+          <View style={styles.content}>
+            <View style={styles.header}>
+              <Text style={styles.subtitle}>
+                Translate text between languages instantly
               </Text>
             </View>
-          </View>
 
-          <TouchableOpacity
-            style={styles.conversationButton}
-            onPress={handleConversationHistory}
-          >
-            <Text style={styles.conversationButtonText}>Conversation History</Text>
-          </TouchableOpacity>
-
-          <View style={styles.bottomSection}>
-            <TouchableOpacity style={styles.micButton} onPress={handleMicPress}>
-              <View style={styles.micButtonInner}>
-                <Ionicons name="mic" size={30} color="#fff" />
+            <View style={styles.boxContainer}>
+              <View style={styles.inputBox}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Type your text here..."
+                  placeholderTextColor="#718096"
+                  value={inputText}
+                  onChangeText={setInputText}
+                  multiline
+                />
               </View>
+
+              <View style={styles.outputBox}>
+                <Text
+                  style={
+                    translatedText ? styles.outputText : styles.placeholderText
+                  }
+                >
+                  {translatedText || 'Translation will appear here...'}
+                </Text>
+              </View>
+            </View>
+
+            <TouchableOpacity
+              style={styles.conversationButton}
+              onPress={handleConversationHistory}
+            >
+              <Text style={styles.conversationButtonText}>
+                Conversation History
+              </Text>
             </TouchableOpacity>
+
+            <View style={styles.bottomSection}>
+              <TouchableOpacity style={styles.micButton} onPress={handleMicPress}>
+                <View style={styles.micButtonInner}>
+                  <Ionicons name="mic" size={30} color="#fff" />
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      </TouchableWithoutFeedback>
     </SafeAreaView>
   );
 };
