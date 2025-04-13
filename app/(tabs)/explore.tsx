@@ -16,10 +16,12 @@ function Explore() {
     setTargetLang("Spanish");
   };
 
+  // Directs us to AI chatbot form
   const handleAIAssistance = () => {
     router.push('/Assistant');
   };
 
+  // Directs us to flashcards form
   const handleFlashcards = () => {
     router.push('/Flashcards');
   };
