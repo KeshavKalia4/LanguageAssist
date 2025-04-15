@@ -19,6 +19,7 @@ client = OpenAI(api_key=api_key)
 def get_answer():
     try:
         data = request.get_json()
+
         if not data or 'question' not in data:
             return jsonify({'error': 'Missing "question" field in request body'}), 400
 
@@ -27,18 +28,20 @@ def get_answer():
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a Language Assistant"},
+                {"role": "system", "content": "You are a helpful assistant"},
                 {"role": "user", "content": user_question}
             ],
             max_tokens=1000
         )
 
+
         return jsonify({"answer": response.choices[0].message.content.strip()})
 
+    
     except Exception as e:
         print("Error in /api/get_answer:", str(e))  # Log the error in the terminal
         return jsonify({'error': str(e)}), 500
-
+    
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001, debug=True)
 
